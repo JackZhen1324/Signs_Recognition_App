@@ -191,7 +191,7 @@ public class pratice extends AppCompatActivity {
     public void start_praticing()
     {
 
-        Intent t = new Intent(this,UploadNew.class);
+        Intent t = new Intent(this,MainActivity.class);
         t.putExtra("sign_name", currentSign);
 
         startActivityForResult(t,0);
