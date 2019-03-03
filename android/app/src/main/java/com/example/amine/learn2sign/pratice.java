@@ -74,7 +74,6 @@ public class pratice extends AppCompatActivity {
         currentSign = sign_List[rand_int1];
         title_of_sample.setText("Random Sign: "+currentSign);
         if(currentSign==("Alaska")) {
-
             path = "android.resource://" + getPackageName() + "/" + R.raw.alaska;
         } else if(currentSign==("Arizona")) {
             path = "android.resource://" + getPackageName() + "/" + R.raw.arizona;
