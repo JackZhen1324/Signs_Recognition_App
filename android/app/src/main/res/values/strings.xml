@@ -41,4 +41,5 @@
     <string name="gotoupload">GotoUpload</string>
     <string name="title_activity_pratice">pratice</string>
     <string name="title_activity_upload_new">UploadNew</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>
