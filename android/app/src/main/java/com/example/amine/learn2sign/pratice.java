@@ -47,7 +47,7 @@ public class pratice extends AppCompatActivity {
     private TextView editText;
     private VideoView sameple_v;
     private TextView title_of_sample;
-    private Button Start_Praticing;
+//    private Button Start_Praticing;
     String currentSign;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +55,10 @@ public class pratice extends AppCompatActivity {
 
         setContentView(R.layout.activity_pratice);
         editText = (TextView) findViewById(R.id.editText2);
+        editText = (TextView) findViewById(R.id.editText2);
         sameple_v = (VideoView) findViewById(R.id.sample_video);
         title_of_sample = (TextView) findViewById(R.id.title_of_sample);
-        Start_Praticing =(Button) findViewById(R.id.Start_Praticing);
+//        Start_Praticing =(Button) findViewById(R.id.Start_Praticing);
         Random rand = new Random();
         int rand_int1 = rand.nextInt(25);
         String path = "";
@@ -198,7 +199,7 @@ public class pratice extends AppCompatActivity {
         Intent t = new Intent(this,UploadNew.class);
         t.putExtra("sign_name", currentSign);
 
-        startActivityForResult(t,0);
+        startActivityForResult(t,9999);
     }
 
 
