@@ -58,6 +58,15 @@ public class pratice extends AppCompatActivity {
         sameple_v = (VideoView) findViewById(R.id.sample_video);
         title_of_sample = (TextView) findViewById(R.id.title_of_sample);
         Start_Praticing =(Button) findViewById(R.id.Start_Praticing);
+
+        Start_Praticing.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("lol","tets!!!!");
+
+
+            }
+        });
         Random rand = new Random();
         int rand_int1 = rand.nextInt(25);
         String path = "";
@@ -191,15 +200,7 @@ public class pratice extends AppCompatActivity {
 
 
     }
-    @OnClick(R.id.Start_Praticing)
-    public void start_praticing()
-    {
 
-        Intent t = new Intent(this,UploadNew.class);
-        t.putExtra("sign_name", currentSign);
-
-        startActivityForResult(t,0);
-    }
 
 
 
