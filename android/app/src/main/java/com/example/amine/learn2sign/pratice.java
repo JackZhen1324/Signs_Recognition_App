@@ -48,6 +48,7 @@ public class pratice extends AppCompatActivity {
     private VideoView sameple_v;
     private TextView title_of_sample;
     private Button Start_Praticing;
+    String currentSign;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +62,7 @@ public class pratice extends AppCompatActivity {
         int rand_int1 = rand.nextInt(25);
         String path = "";
         String sign_List[] = new String[]{"Alaska","California","Colorado","Florida", "Georgia","Hawaii","Illinois","Indiana","Kansas","Kansas","Louisiana","Massachusetts","Michigan","Minnesota","Nevada","NewJersey","NewMexico","NewYork","Ohio","Pennsylvania","SouthCarolina","Texas","Utah","Washington","Wisconsin"};
-        String currentSign = sign_List[rand_int1];
+        currentSign = sign_List[rand_int1];
         title_of_sample.setText("Random Sign: "+currentSign);
         if(currentSign==("Alaska")) {
 
@@ -129,12 +130,12 @@ public class pratice extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-
-
-
+                
 
             }
         });
@@ -189,9 +190,11 @@ public class pratice extends AppCompatActivity {
     @OnClick(R.id.Start_Praticing)
     public void start_praticing()
     {
-//        Intent t = new Intent(this,pratice_record.class);
-//        t.putExtra("sign_name", )
-//        startActivityForResult(t,9999);
+
+        Intent t = new Intent(this,UploadNew.class);
+        t.putExtra("sign_name", currentSign);
+
+        startActivityForResult(t,0);
     }
 
 
