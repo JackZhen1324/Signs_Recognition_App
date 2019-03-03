@@ -40,12 +40,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import butterknife.OnClick;
+
 public class pratice extends AppCompatActivity {
 
     private TextView editText;
     private VideoView sameple_v;
     private TextView title_of_sample;
-
+    private Button Start_Praticing;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,7 @@ public class pratice extends AppCompatActivity {
         editText = (TextView) findViewById(R.id.editText2);
         sameple_v = (VideoView) findViewById(R.id.sample_video);
         title_of_sample = (TextView) findViewById(R.id.title_of_sample);
+        Start_Praticing =(Button) findViewById(R.id.Start_Praticing);
         Random rand = new Random();
         int rand_int1 = rand.nextInt(25);
         String path = "";
@@ -145,16 +148,7 @@ public class pratice extends AppCompatActivity {
         for(int j =0 ;j< sign_List.length;j++)
         {
 
-            if(count<3)
-            {
-                Log.e("error","missing!!!!!!!!!");
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage("Missing signs");
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
 
-                break;
-            }
             count =0;
             for (int i = 0; i < matchingFiles.length; i++)
             {
@@ -165,18 +159,39 @@ public class pratice extends AppCompatActivity {
 
 
             }
+            if(count<3)
+            {
+                Log.e("error","missing!!!!!!!!!");
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("Missing signs");
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+                break;
+            }
         }
         editText.setText(samplePath);
         sameple_v.setOnCompletionListener(
                 new MediaPlayer.OnCompletionListener() {
                     @Override
-                    public void onCompletion(MediaPlayer mp) {
+                    public void onCompletion(MediaPlayer mp)
+                    {
                         sameple_v.start();
                     }
                 }
         );
 
 
+
+
+
+    }
+    @OnClick(R.id.Start_Praticing)
+    public void start_praticing()
+    {
+        Intent t = new Intent(this,pratice_record.class);
+        t.putExtra("sign_name", )
+        startActivityForResult(t,9999);
     }
 
 
