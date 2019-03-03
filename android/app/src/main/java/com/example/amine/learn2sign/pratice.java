@@ -63,7 +63,9 @@ public class pratice extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.e("lol","tets!!!!");
+                Intent t = new Intent(pratice.this,UploadNew.class);
 
+                startActivityForResult(t,9999);
 
             }
         });
