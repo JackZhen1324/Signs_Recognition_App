@@ -189,9 +189,9 @@ public class pratice extends AppCompatActivity {
     @OnClick(R.id.Start_Praticing)
     public void start_praticing()
     {
-        Intent t = new Intent(this,pratice_record.class);
-        t.putExtra("sign_name", )
-        startActivityForResult(t,9999);
+//        Intent t = new Intent(this,pratice_record.class);
+//        t.putExtra("sign_name", )
+//        startActivityForResult(t,9999);
     }
 
 

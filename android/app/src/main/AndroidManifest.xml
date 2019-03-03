@@ -38,6 +38,10 @@
         <activity
             android:name=".pratice"
             android:label="@string/title_activity_pratice"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UploadNew"
+            android:label="@string/title_activity_upload_new"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
