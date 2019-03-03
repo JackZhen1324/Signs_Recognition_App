@@ -151,15 +151,19 @@ public class pratice extends AppCompatActivity {
 
 
             count =0;
-            for (int i = 0; i < matchingFiles.length; i++)
-            {
-                if(matchingFiles[i].contains(sign_List[j]))
+            if(matchingFiles!=null){
+                for (int i = 0; i < matchingFiles.length; i++)
                 {
-                    count++;
+                    Log.e("oneResourceRecord",matchingFiles[i]);
+                    if(matchingFiles[i].contains(sign_List[j]))
+                    {
+                        count++;
+                    }
+
+
                 }
-
-
             }
+
             if(count<3)
             {
                 Log.e("error","missing!!!!!!!!!");
