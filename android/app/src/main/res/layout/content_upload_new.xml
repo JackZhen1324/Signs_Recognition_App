@@ -8,4 +8,11 @@
     tools:context=".UploadNew"
     tools:showIn="@layout/activity_upload_new">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="142dp" />
 </android.support.constraint.ConstraintLayout>
