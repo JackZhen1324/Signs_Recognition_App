@@ -67,7 +67,6 @@ public class pratice extends AppCompatActivity {
         currentSign = sign_List[rand_int1];
         title_of_sample.setText("Random Sign: "+currentSign);
         if(currentSign==("Alaska")) {
-
             path = "android.resource://" + getPackageName() + "/" + R.raw.alaska;
         } else if(currentSign==("Arizona")) {
             path = "android.resource://" + getPackageName() + "/" + R.raw.arizona;
@@ -150,10 +149,12 @@ public class pratice extends AppCompatActivity {
                     @Override
                     public void onCompletion(MediaPlayer mp)
                     {
-                        sameple_v.start();
+                        //sameple_v.start();
                     }
                 }
+
         );
+
 
 
         Start_Praticing.setOnClickListener(new OnClickListener() {
