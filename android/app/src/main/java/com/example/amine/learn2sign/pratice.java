@@ -43,7 +43,7 @@ import android.widget.VideoView;
 import butterknife.OnClick;
 
 public class pratice extends AppCompatActivity {
-
+    private TextView current_sign;
     private TextView editText;
     private VideoView sameple_v;
     private TextView title_of_sample;
@@ -55,16 +55,19 @@ public class pratice extends AppCompatActivity {
 
         setContentView(R.layout.activity_pratice);
         editText = (TextView) findViewById(R.id.editText2);
+        current_sign =(TextView) findViewById(R.id.Curent_Sign);
         sameple_v = (VideoView) findViewById(R.id.sample_video);
         title_of_sample = (TextView) findViewById(R.id.title_of_sample);
         Start_Praticing =(Button) findViewById(R.id.Start_Praticing);
 
-
+        sameple_v.setVisibility(View.VISIBLE);
+        sameple_v.setVisibility(View.GONE);
         Random rand = new Random();
         int rand_int1 = rand.nextInt(25);
         String path = "";
         String sign_List[] = new String[]{"Alaska","California","Colorado","Florida", "Georgia","Hawaii","Illinois","Indiana","Kansas","Kansas","Louisiana","Massachusetts","Michigan","Minnesota","Nevada","NewJersey","NewMexico","NewYork","Ohio","Pennsylvania","SouthCarolina","Texas","Utah","Washington","Wisconsin"};
         currentSign = sign_List[rand_int1];
+        current_sign.setText(currentSign);
         title_of_sample.setText("Random Sign: "+currentSign);
         if(currentSign==("Alaska")) {
             path = "android.resource://" + getPackageName() + "/" + R.raw.alaska;
