@@ -1,8 +1,6 @@
 package com.example.amine.learn2sign;
-
 import android.Manifest;
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +10,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -31,25 +29,16 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.VideoView;
-
 import com.facebook.stetho.Stetho;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashSet;
-import java.util.Set;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.internal.Utils;
-
-import static android.provider.MediaStore.EXTRA_DURATION_LIMIT;
-import static android.provider.MediaStore.EXTRA_MEDIA_TITLE;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_EMAIL;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_ID;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_SERVER_ADDRESS;
@@ -57,9 +46,7 @@ import static com.example.amine.learn2sign.LoginActivity.INTENT_TIME_WATCHED;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_TIME_WATCHED_VIDEO;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_URI;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_WORD;
-
 public class MainActivity extends AppCompatActivity {
-
 
     static final int REQUEST_VIDEO_CAPTURE = 1;
 
@@ -103,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     long time_started = 0;
     long time_started_return = 0;
     Activity mainActivity;
-
+    int isEnoughSign = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -282,9 +269,62 @@ public class MainActivity extends AppCompatActivity {
     public void pratice_sign(){
         System.out.print("help!!!");
         Log.e("lol","tets!!!!");
-        Intent t = new Intent(this,pratice.class);
+        String RecordPath = Environment.getExternalStorageDirectory().getPath() + "/Learn2Sign/";
+        String sign_List[] = new String[]{"Alaska","California","Colorado","Florida", "Georgia","Hawaii","Illinois","Indiana","Kansas","Kansas","Louisiana","Massachusetts","Michigan","Minnesota","Nevada","NewJersey","NewMexico","NewYork","Ohio","Pennsylvania","SouthCarolina","Texas","Utah","Washington","Wisconsin"};
+        File a = new File(RecordPath);
+        String [] matchingFiles = a.list();
 
-        startActivityForResult(t,9999);
+        int count =0;
+        for(int j =0 ;j< sign_List.length;j++)
+        {
+            count =0;
+            if(matchingFiles!=null){
+                for (int i = 0; i < matchingFiles.length; i++)
+                {
+                    Log.e("oneResourceRecord",matchingFiles[i]);
+                    if(matchingFiles[i].contains(sign_List[j]))
+                    {
+                        count++;
+                    }
+
+
+                }
+            }
+
+            if(count<3)
+            {   isEnoughSign = 0;
+                Log.e("error","missing!!!!!!!!!");
+                android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("Sorry, you don't have enough signs to enter this module!");
+                alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.e("test","test11");
+                        isEnoughSign = 1;
+                        Log.e("currentSign",String.valueOf(isEnoughSign));
+                        if(isEnoughSign == 1)
+                        {
+                            Intent t = new Intent(MainActivity.this,pratice.class);
+                            Log.e("test","test");
+                            startActivityForResult(t, 9999);
+                        }
+                    }
+                });
+                android.app.AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+                break;
+            }
+        }
+        Log.e("currentSign",String.valueOf(isEnoughSign));
+        if(isEnoughSign == 1)
+        {
+            Intent t = new Intent(this, pratice.class);
+            Log.e("test","test");
+            startActivityForResult(t, 9999);
+        }
+
+
     }
     @OnClick(R.id.bt_record)
     public void record_video() {
@@ -354,12 +394,7 @@ public class MainActivity extends AppCompatActivity {
              t.putExtra(INTENT_WORD,sp_words.getSelectedItem().toString());
              t.putExtra(INTENT_TIME_WATCHED, time_started);
              startActivityForResult(t,9999);
-
-
-
-
-
- /*           File m = new File(Environment.getExternalStorageDirectory().getPath() + "/Learn2Sign");
+            /*File m = new File(Environment.getExternalStorageDirectory().getPath() + "/Learn2Sign");
             if(!m.exists()) {
                 if(m.mkdir()) {
                     Toast.makeText(this,"Directory Created",Toast.LENGTH_SHORT).show();

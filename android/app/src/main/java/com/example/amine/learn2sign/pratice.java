@@ -142,40 +142,7 @@ public class pratice extends AppCompatActivity {
         });
 
 
-        String RecordPath = Environment.getExternalStorageDirectory().getPath() + "/Learn2Sign/";
 
-        File a = new File(RecordPath);
-        String [] matchingFiles = a.list();
-        int count =0;
-        for(int j =0 ;j< sign_List.length;j++)
-        {
-
-
-            count =0;
-            if(matchingFiles!=null){
-                for (int i = 0; i < matchingFiles.length; i++)
-                {
-                    Log.e("oneResourceRecord",matchingFiles[i]);
-                    if(matchingFiles[i].contains(sign_List[j]))
-                    {
-                        count++;
-                    }
-
-
-                }
-            }
-
-            if(count<3)
-            {
-                Log.e("error","missing!!!!!!!!!");
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage("Missing signs");
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-
-                break;
-            }
-        }
         editText.setText(samplePath);
         sameple_v.setOnCompletionListener(
                 new MediaPlayer.OnCompletionListener() {
