@@ -182,10 +182,12 @@ public class pratice extends AppCompatActivity {
                     @Override
                     public void onCompletion(MediaPlayer mp)
                     {
-                        sameple_v.start();
+                        //sameple_v.start();
                     }
                 }
+
         );
+
 
 
         Start_Praticing.setOnClickListener(new OnClickListener() {
