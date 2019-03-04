@@ -99,7 +99,8 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
                 returnIntent.putExtra(INTENT_URI,returnfile);
                 returnIntent.putExtra("filename",filename);
                 returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
-                activity.setResult(8888,returnIntent);
+//                activity.setResult(8888,returnIntent);
+                activity.startActivity(returnIntent);
                 activity.finish();
             }
         };
@@ -134,8 +135,8 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
                     returnIntent.putExtra(INTENT_URI,returnfile);
                     returnIntent.putExtra("filename",filename);
                     returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
-
-                    activity.setResult(8888,returnIntent);
+                    activity.startActivity(returnIntent);
+//                    activity.setResult(8888,returnIntent);
                     activity.finish();
 
                 }
@@ -204,7 +205,8 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
                     returnIntent.putExtra(INTENT_URI,returnfile);
                     returnIntent.putExtra("filename",filename);
                     returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
-                    activity.setResult(8888,returnIntent);
+//                    activity.setResult(8888,returnIntent);
+                    activity.startActivity(returnIntent);
                     activity.finish();
                 }
 
@@ -244,7 +246,8 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
         returnIntent.putExtra(INTENT_URI,returnfile);
         returnIntent.putExtra("filename",filename);
         returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
-        activity.setResult(7777,returnIntent);
+//        activity.setResult(7777,returnIntent);
+        activity.startActivity(returnIntent);
         activity.finish();
 
         super.onBackPressed();
