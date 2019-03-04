@@ -97,6 +97,7 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
                     time.cancel();
                 }
                 returnIntent.putExtra(INTENT_URI,returnfile);
+                returnIntent.putExtra("word",signname);
                 returnIntent.putExtra("filename",filename);
                 returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
 //                activity.setResult(8888,returnIntent);
@@ -133,6 +134,7 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
                         time.cancel();
                     }
                     returnIntent.putExtra(INTENT_URI,returnfile);
+                    returnIntent.putExtra("word",signname);
                     returnIntent.putExtra("filename",filename);
                     returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
                     activity.startActivity(returnIntent);
@@ -203,6 +205,7 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
                         time.cancel();
                     }
                     returnIntent.putExtra(INTENT_URI,returnfile);
+                    returnIntent.putExtra("word",signname);
                     returnIntent.putExtra("filename",filename);
                     returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
 //                    activity.setResult(8888,returnIntent);
