@@ -54,6 +54,8 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
     CountDownTimer timer;
     CountDownTimer time;
     long time_watched;
+    String signname;
+    String filename;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,9 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
         if(getIntent().hasExtra(INTENT_TIME_WATCHED)) {
             time_watched = getIntent().getLongExtra(INTENT_TIME_WATCHED,0);
         }
+        Intent pre_intent = getIntent();
+        signname = pre_intent.getStringExtra("currentSign");
+        Log.e("SignName",signname);
         mSurfaceView = (SurfaceView) findViewById(R.id.sv_camera);
         mHolder = mSurfaceView.getHolder();
         mHolder.addCallback(this);
@@ -92,6 +97,7 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
                     time.cancel();
                 }
                 returnIntent.putExtra(INTENT_URI,returnfile);
+                returnIntent.putExtra("filename",filename);
                 returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
                 activity.setResult(8888,returnIntent);
                 activity.finish();
@@ -126,6 +132,7 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
                         time.cancel();
                     }
                     returnIntent.putExtra(INTENT_URI,returnfile);
+                    returnIntent.putExtra("filename",filename);
                     returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
 
                     activity.setResult(8888,returnIntent);
@@ -164,11 +171,13 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
         String format = s.format(new Date());
         File file = new File(Environment.getExternalStorageDirectory().getPath() + "/Learn2Sign/"
                 + sharedPreferences.getString(INTENT_ID,"0000")+"_"+word+"_0_"+format  + ".mp4");
+        filename=sharedPreferences.getString(INTENT_ID,"0000")+"_"+word+"_0_"+format  + ".mp4";
         //just to be safe
         while(file.exists()) {
             i++;
             file = new File(Environment.getExternalStorageDirectory().getPath() + "/Learn2Sign/"
                     + sharedPreferences.getString(INTENT_ID,"0000")+"_"+word+"_"+i +"_"+format+ ".mp4");
+            filename=sharedPreferences.getString(INTENT_ID,"0000")+"_"+word+"_0_"+format  + ".mp4";
             Log.e("count","i");
         }
 
@@ -193,6 +202,7 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
                         time.cancel();
                     }
                     returnIntent.putExtra(INTENT_URI,returnfile);
+                    returnIntent.putExtra("filename",filename);
                     returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
                     activity.setResult(8888,returnIntent);
                     activity.finish();
@@ -232,6 +242,7 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
             time.cancel();
 
         returnIntent.putExtra(INTENT_URI,returnfile);
+        returnIntent.putExtra("filename",filename);
         returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
         activity.setResult(7777,returnIntent);
         activity.finish();
