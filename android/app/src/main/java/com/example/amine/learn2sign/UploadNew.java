@@ -171,14 +171,14 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
         SimpleDateFormat s = new SimpleDateFormat("ddMMyyyyhhmmss", Locale.US);
         String format = s.format(new Date());
         File file = new File(Environment.getExternalStorageDirectory().getPath() + "/Learn2Sign/"
-                + sharedPreferences.getString(INTENT_ID,"0000")+"_"+word+"_0_"+format  + ".mp4");
-        filename=sharedPreferences.getString(INTENT_ID,"0000")+"_"+word+"_0_"+format  + ".mp4";
+                + sharedPreferences.getString(INTENT_ID,"0000")+"_"+signname+"_0_"+format  + ".mp4");
+        filename=sharedPreferences.getString(INTENT_ID,"0000")+"_"+signname+"_0_"+format  + ".mp4";
         //just to be safe
         while(file.exists()) {
             i++;
             file = new File(Environment.getExternalStorageDirectory().getPath() + "/Learn2Sign/"
-                    + sharedPreferences.getString(INTENT_ID,"0000")+"_"+word+"_"+i +"_"+format+ ".mp4");
-            filename=sharedPreferences.getString(INTENT_ID,"0000")+"_"+word+"_0_"+format  + ".mp4";
+                    + sharedPreferences.getString(INTENT_ID,"0000")+"_"+signname+"_"+i +"_"+format+ ".mp4");
+            filename=sharedPreferences.getString(INTENT_ID,"0000")+"_"+signname+"_0_"+format  + ".mp4";
             Log.e("count","i");
         }
 
