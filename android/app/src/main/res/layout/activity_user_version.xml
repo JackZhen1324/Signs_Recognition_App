@@ -30,7 +30,7 @@
             android:id="@+id/user_video1"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginBottom="444dp"
+            android:layout_marginBottom="428dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -48,11 +48,43 @@
             android:id="@+id/sample_video1"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginBottom="216dp"
+            android:layout_marginBottom="176dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="accept"
+            tools:layout_editor_absoluteX="70dp"
+            tools:layout_editor_absoluteY="600dp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="reject"
+            tools:layout_editor_absoluteX="250dp"
+            tools:layout_editor_absoluteY="600dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Signsavvy video"
+            tools:layout_editor_absoluteX="158dp"
+            tools:layout_editor_absoluteY="70dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your video"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="323dp" />
 
     </android.support.constraint.ConstraintLayout>
 
