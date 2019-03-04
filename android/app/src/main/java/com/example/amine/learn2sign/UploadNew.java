@@ -242,12 +242,12 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
             timer.cancel();
         if(time!=null)
             time.cancel();
-
-        returnIntent.putExtra(INTENT_URI,returnfile);
-        returnIntent.putExtra("filename",filename);
-        returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
+        Intent backward=new Intent(UploadNew.this,pratice.class);
+//        returnIntent.putExtra(INTENT_URI,returnfile);
+//        returnIntent.putExtra("filename",filename);
+//        returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
 //        activity.setResult(7777,returnIntent);
-        activity.startActivity(returnIntent);
+        activity.startActivity(backward);
         activity.finish();
 
         super.onBackPressed();
