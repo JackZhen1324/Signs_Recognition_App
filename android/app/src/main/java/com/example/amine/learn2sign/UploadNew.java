@@ -61,7 +61,7 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_new);
         activity = this;
-        returnIntent = new Intent();
+        returnIntent = new Intent(UploadNew.this,userVersion.class);
         // we shall take the video in landscape orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
         if(getIntent().hasExtra(INTENT_WORD)) {
