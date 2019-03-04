@@ -2,6 +2,7 @@ package com.example.amine.learn2sign;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -106,7 +107,29 @@ public class userVersion extends AppCompatActivity {
             user_v.start();
         }
 
+        sameple_v.setOnCompletionListener(
+                new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp)
+                    {
+                        sameple_v.start();
+                    }
+                }
+
+        );
+        user_v.setOnCompletionListener(
+                new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp)
+                    {
+                        user_v.start();
+                    }
+                }
+
+        );
+
 
     }
+
 
 }
