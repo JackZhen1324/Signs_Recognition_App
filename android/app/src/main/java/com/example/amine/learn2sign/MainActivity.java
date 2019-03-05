@@ -286,8 +286,6 @@ public class MainActivity extends AppCompatActivity {
                     {
                         count++;
                     }
-
-
                 }
             }
 
@@ -324,12 +322,9 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(t, 9999);
         }
 
-
     }
     @OnClick(R.id.bt_record)
     public void record_video() {
-
-
 
          if( ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA)
@@ -436,7 +431,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
@@ -452,7 +446,6 @@ public class MainActivity extends AppCompatActivity {
             rb_learn.setEnabled(true);
             //rb_practice.setEnabled(true);
             sp_ip_address.setEnabled(true);
-
 
         }
         if(requestCode==9999 && resultCode == 8888) {

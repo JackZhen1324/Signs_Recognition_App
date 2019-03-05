@@ -188,28 +188,40 @@ public class userVersion extends AppCompatActivity {
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                         Log.e("msg success",statusCode+"");
                         if(statusCode==200) {
+
                             Toast.makeText(userVersion.this, "Success", Toast.LENGTH_SHORT).show();
 
+                            Log.e("gotomain","go to main");
+                            Intent t = new Intent(userVersion.this,MainActivity.class);
+                            startActivityForResult(t,9999);
                         }
                         else {
-
                             Toast.makeText(userVersion.this, "Failed", Toast.LENGTH_SHORT).show();
-
                         }
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
-                        Toast.makeText(userVersion.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+                        Log.e("failed",statusCode+"");
 
+                        Toast.makeText(userVersion.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+        //end onclick accept
+
+        decline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.e("gotopractice","go to practice");
+                Intent t = new Intent(userVersion.this,pratice.class);
+                startActivityForResult(t,9999);
 
             }
         });
-
-
     }
 
 }

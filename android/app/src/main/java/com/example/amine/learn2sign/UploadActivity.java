@@ -110,6 +110,8 @@ public class UploadActivity extends AppCompatActivity {
                         // send request
                         AsyncHttpClient client = new AsyncHttpClient();
                     final int finalI = i;
+
+                    //send to client
                     client.post("http://"+server_ip +"/upload_video.php", params, new AsyncHttpResponseHandler() {
                             @Override
                             public void onSuccess(int statusCode, Header[] headers, byte[] bytes) {
@@ -145,7 +147,6 @@ public class UploadActivity extends AppCompatActivity {
                                 super.onProgress(bytesWritten, totalSize);
                             }
 
-
                             @Override
                             public void onStart() {
                                 tv_filename.setVisibility(View.VISIBLE);
@@ -169,9 +170,7 @@ public class UploadActivity extends AppCompatActivity {
                         /*
                         UploadFile uploadFile = new UploadFile();
                         uploadFile.execute(uploadListAdapter.getVideos()[i].getPath());*/
-
                 }
-
 
             default:
                 return super.onOptionsItemSelected(item);
