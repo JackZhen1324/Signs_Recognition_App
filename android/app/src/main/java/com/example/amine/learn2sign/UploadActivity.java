@@ -76,7 +76,6 @@ public class UploadActivity extends AppCompatActivity {
         uploadListAdapter = new UploadListAdapter(m.listFiles(), this.getApplicationContext());
         rv_videos.setAdapter(uploadListAdapter);
 
-
     }
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -107,7 +106,6 @@ public class UploadActivity extends AppCompatActivity {
                             params.put("id",id);
 
                         } catch(FileNotFoundException e) {}
-
 
                         // send request
                         AsyncHttpClient client = new AsyncHttpClient();

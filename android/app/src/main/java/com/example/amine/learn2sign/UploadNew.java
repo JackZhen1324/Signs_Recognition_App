@@ -225,7 +225,7 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
         //mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
 
-        //mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT);
+        //mMediaRecorder.setVideoEndeclime_Buttloncoder(MediaRecorder.VideoEncoder.DEFAULT);
         try {
 
             mMediaRecorder.prepare();
@@ -237,7 +237,6 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
 
         mInitSuccesful = true;
     }
-
 
     @Override
     public void onBackPressed() {
@@ -255,7 +254,6 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
 
         super.onBackPressed();
     }
-
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {

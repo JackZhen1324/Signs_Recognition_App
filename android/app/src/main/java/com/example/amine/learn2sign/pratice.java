@@ -144,8 +144,6 @@ public class pratice extends AppCompatActivity {
             }
         });
 
-
-
         editText.setText(samplePath);
         sameple_v.setOnCompletionListener(
                 new MediaPlayer.OnCompletionListener() {
@@ -157,8 +155,6 @@ public class pratice extends AppCompatActivity {
                 }
 
         );
-
-
 
         Start_Praticing.setOnClickListener(new OnClickListener() {
             @Override

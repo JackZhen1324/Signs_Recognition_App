@@ -1,5 +1,6 @@
 package com.example.amine.learn2sign;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -11,8 +12,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.ResponseHandlerInterface;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.HttpResponse;
+
+
+import static com.example.amine.learn2sign.LoginActivity.INTENT_ID;
+import static com.example.amine.learn2sign.LoginActivity.INTENT_SERVER_ADDRESS;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_TIME_WATCHED_VIDEO;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_URI;
 
@@ -24,6 +49,10 @@ public class userVersion extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     long time_started = 0;
     long time_started_return = 0;
+
+    private Button accept;
+    private Button decline;
+
     String signname;
     private VideoView sameple_v;
     private VideoView user_v;
@@ -34,6 +63,9 @@ public class userVersion extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent pre_intent = getIntent();
+
+        accept = (Button) findViewById(R.id.accept);
+        decline = (Button) findViewById(R.id.decline);
 
         sameple_v = (VideoView) findViewById(R.id.sample_video1);
         user_v = (VideoView) findViewById(R.id.user_video1);
@@ -128,8 +160,56 @@ public class userVersion extends AppCompatActivity {
 
         );
 
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent vid = getIntent();
+                String a = vid.getStringExtra(INTENT_URI);
+                vid.getData();
+                Log.e("HMM", a);
+
+                String id = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE).getString(INTENT_ID,"00000000");
+
+                String server_ip = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE).getString(INTENT_SERVER_ADDRESS,"10.211.17.171");
+                Log.d("msg",server_ip);
+
+                File f = new File(a);
+                AsyncHttpClient client_logs = new AsyncHttpClient();
+                RequestParams params = new RequestParams();
+                try {
+                    params.put("uploaded_file",f);
+                    params.put("id",id);
+                } catch (FileNotFoundException e) { }
+
+                AsyncHttpClient client = new AsyncHttpClient();
+
+                client.post("http://" + server_ip + "/upload_video_performance.php", params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        Log.e("msg success",statusCode+"");
+                        if(statusCode==200) {
+                            Toast.makeText(userVersion.this, "Success", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else {
+
+                            Toast.makeText(userVersion.this, "Failed", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                        Toast.makeText(userVersion.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+            }
+        });
+
 
     }
-
 
 }
