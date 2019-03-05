@@ -133,11 +133,12 @@ public class UploadNew extends Activity implements SurfaceHolder.Callback {
                     if(time!=null) {
                         time.cancel();
                     }
-                    returnIntent.putExtra(INTENT_URI,returnfile);
-                    returnIntent.putExtra("word",signname);
-                    returnIntent.putExtra("filename",filename);
-                    returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
-                    activity.startActivity(returnIntent);
+                    Intent stopintent = new Intent(UploadNew.this,pratice.class);
+//                    returnIntent.putExtra(INTENT_URI,returnfile);
+//                    returnIntent.putExtra("word",signname);
+//                    returnIntent.putExtra("filename",filename);
+//                    returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
+                    activity.startActivity(stopintent);
 //                    activity.setResult(8888,returnIntent);
                     activity.finish();
 
