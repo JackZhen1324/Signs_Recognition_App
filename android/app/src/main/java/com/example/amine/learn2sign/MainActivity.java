@@ -286,10 +286,12 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if(statusCode==200) {
                     String res = new String(responseBody);
+                    res=res.replaceAll("\\s+","");
                     String res2 = res;
+                    int in2 = new Integer(res.toString());
                     Log.e("test",res);
                     Toast.makeText(MainActivity.this, res, Toast.LENGTH_SHORT).show();
-                    if( Integer.valueOf(res2)  < 75)
+                    if( in2 < 75)
                     {   isEnoughSign = 0;
                         Log.e("error","missing!!!!!!!!!");
                         android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
