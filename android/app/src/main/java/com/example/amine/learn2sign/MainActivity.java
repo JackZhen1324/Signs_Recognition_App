@@ -266,7 +266,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
     @OnClick(R.id.p_button)
-    public void pratice_sign(){
+    public void pratice_sign()
+    {
+        AsyncHttpClient client_logs = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        try {
+
+            params.put("id",id);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        client_logs.post("http://"+server_ip+"/check_video_count.php", params, new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if(statusCode==200)
+
+                    Toast.makeText(UploadActivity.this, "Done", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(UploadActivity.this, "Log File could not be uploaded", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(UploadActivity.this, "Log File could not be uploaded", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        /*
         System.out.print("help!!!");
         Log.e("lol","tets!!!!");
         String RecordPath = Environment.getExternalStorageDirectory().getPath() + "/Learn2Sign/";
@@ -321,6 +348,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("test","test");
             startActivityForResult(t, 9999);
         }
+        */
 
     }
     @OnClick(R.id.bt_record)
