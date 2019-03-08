@@ -285,13 +285,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if(statusCode==200) {
-
-                    Toast.makeText(MainActivity.this, String.valueOf(responseBody[0]), Toast.LENGTH_SHORT).show();
-                    if(responseBody[0]<75)
+                    String res = new String(responseBody);
+                    String res2 = res;
+                    Log.e("test",res);
+                    Toast.makeText(MainActivity.this, res, Toast.LENGTH_SHORT).show();
+                    if( Integer.valueOf(res2)  < 75)
                     {   isEnoughSign = 0;
                         Log.e("error","missing!!!!!!!!!");
                         android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
-                        alertDialogBuilder.setMessage("Sorry, you don't have enough signs to enter this module! You currently have "+ String.valueOf(responseBody[0]) +" signs on server.");
+                        alertDialogBuilder.setMessage("Sorry, you don't have enough signs to enter this module! You currently have "+ res +" signs on server.");
                         alertDialogBuilder.setPositiveButton("Enter Anyway!!", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
