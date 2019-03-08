@@ -46,6 +46,11 @@ import static com.example.amine.learn2sign.LoginActivity.INTENT_TIME_WATCHED;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_TIME_WATCHED_VIDEO;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_URI;
 import static com.example.amine.learn2sign.LoginActivity.INTENT_WORD;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.ResponseHandlerInterface;
+import cz.msebera.android.httpclient.Header;
 public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_VIDEO_CAPTURE = 1;
@@ -267,29 +272,63 @@ public class MainActivity extends AppCompatActivity {
     }
     @OnClick(R.id.p_button)
     public void pratice_sign()
-    {
+    {String id = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE).getString(INTENT_ID,"00000000");
+        String server_ip = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE).getString(INTENT_SERVER_ADDRESS,"10.211.17.171");
         AsyncHttpClient client_logs = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        try {
+
 
             params.put("id",id);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
         client_logs.post("http://"+server_ip+"/check_video_count.php", params, new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if(statusCode==200)
+                if(statusCode==200) {
 
-                    Toast.makeText(UploadActivity.this, "Done", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, String.valueOf(responseBody[0]), Toast.LENGTH_SHORT).show();
+                    if(responseBody[0]<75)
+                    {   isEnoughSign = 0;
+                        Log.e("error","missing!!!!!!!!!");
+                        android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
+                        alertDialogBuilder.setMessage("Sorry, you don't have enough signs to enter this module! You currently have "+ String.valueOf(responseBody[0]) +" signs on server.");
+                        alertDialogBuilder.setPositiveButton("Enter Anyway!!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.e("test","test11");
+                                isEnoughSign = 1;
+                                Log.e("currentSign",String.valueOf(isEnoughSign));
+                                if(isEnoughSign == 1)
+                                {
+                                    Intent t = new Intent(MainActivity.this,pratice.class);
+                                    Log.e("test","test");
+                                    startActivityForResult(t, 9999);
+                                }
+                            }
+                        });
+                        android.app.AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+
+
+                    }
+                    else
+                    {
+
+                        Intent t = new Intent(MainActivity.this, pratice.class);
+                        Log.e("test","test");
+                        startActivityForResult(t, 9999);
+
+
+                    }
+
+                }
                 else
-                    Toast.makeText(UploadActivity.this, "Log File could not be uploaded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Internet Error", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(UploadActivity.this, "Log File could not be uploaded", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Internet Error", Toast.LENGTH_SHORT).show();
 
             }
         });
