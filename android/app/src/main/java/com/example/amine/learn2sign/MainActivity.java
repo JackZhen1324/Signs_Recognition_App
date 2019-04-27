@@ -270,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     @OnClick(R.id.p_button)
     public void pratice_sign()
     {String id = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE).getString(INTENT_ID,"00000000");
@@ -327,12 +328,53 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else
-                    Toast.makeText(MainActivity.this, "Internet Error", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(MainActivity.this, "Internet Error", Toast.LENGTH_SHORT).show();
+                isEnoughSign = 0;
+                Log.e("error","missing!!!!!!!!!");
+                android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
+                alertDialogBuilder.setMessage("Sorry, you don't have enough signs to enter this module! You currently have "+ 0 +" signs on server.");
+                alertDialogBuilder.setPositiveButton("Enter Anyway!!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.e("test","test11");
+                        isEnoughSign = 1;
+                        Log.e("currentSign",String.valueOf(isEnoughSign));
+                        if(isEnoughSign == 1)
+                        {
+                            Intent t = new Intent(MainActivity.this,pratice.class);
+                            Log.e("test","test");
+                            startActivityForResult(t, 9999);
+                        }
+                    }
+                });
+                android.app.AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(MainActivity.this, "Internet Error", Toast.LENGTH_SHORT).show();
+                isEnoughSign = 0;
+                Log.e("error","missing!!!!!!!!!");
+                android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
+                alertDialogBuilder.setMessage("Sorry, you don't have enough signs to enter this module! You currently have "+ 0 +" signs on server.");
+                alertDialogBuilder.setPositiveButton("Enter Anyway!!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.e("test","test11");
+                        isEnoughSign = 1;
+                        Log.e("currentSign",String.valueOf(isEnoughSign));
+                        if(isEnoughSign == 1)
+                        {
+                            Intent t = new Intent(MainActivity.this,pratice.class);
+                            Log.e("test","test");
+                            startActivityForResult(t, 9999);
+                        }
+                    }
+                });
+                android.app.AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
 
             }
         });
@@ -482,6 +524,15 @@ public class MainActivity extends AppCompatActivity {
         Intent t = new Intent(this,UploadActivity.class);
         startActivityForResult(t,2000);
     }
+
+    @OnClick(R.id.bt_part2)
+    public void predict() {
+        Intent t = new Intent(MainActivity.this,predictore.class);
+        Log.e("part2","part2");
+        startActivityForResult(t, 9999);
+
+    }
+
 
     @OnClick(R.id.bt_cancel)
     public void cancel() {

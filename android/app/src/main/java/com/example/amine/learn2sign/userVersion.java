@@ -29,6 +29,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +48,8 @@ public class userVersion extends AppCompatActivity {
     String returnedURI;
     String old_text = "";
     SharedPreferences sharedPreferences;
-    long time_started = 0;
+    long accepted_Practice = 0;
+    long decline_Practice = 0;
     long time_started_return = 0;
 
     private Button accept;
@@ -63,6 +65,8 @@ public class userVersion extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent pre_intent = getIntent();
+
+        sharedPreferences =  this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
         accept = (Button) findViewById(R.id.accept);
         decline = (Button) findViewById(R.id.decline);
@@ -168,6 +172,13 @@ public class userVersion extends AppCompatActivity {
                 vid.getData();
                 Log.e("HMM", a);
 
+
+
+                String toAdd  = signname+"_"+"Accept_"+"";
+                HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("PRACTICE",new HashSet<String>());
+                set.add(toAdd);
+                sharedPreferences.edit().putStringSet("PRACTICE",set).apply();
+
                 String id = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE).getString(INTENT_ID,"00000000");
 
                 String server_ip = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE).getString(INTENT_SERVER_ADDRESS,"10.211.17.171");
@@ -217,6 +228,11 @@ public class userVersion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String toAdd  = signname+"_"+"Decline_"+"";
+                HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("PRACTICE",new HashSet<String>());
+                set.add(toAdd);
+                sharedPreferences.edit().putStringSet("PRACTICE",set).apply();
+
                 Log.e("gotopractice","go to practice");
                 Intent t = new Intent(userVersion.this,pratice.class);
                 startActivityForResult(t,9999);
@@ -224,5 +240,6 @@ public class userVersion extends AppCompatActivity {
             }
         });
     }
+
 
 }

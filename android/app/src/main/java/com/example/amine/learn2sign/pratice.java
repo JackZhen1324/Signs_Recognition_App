@@ -49,6 +49,8 @@ public class pratice extends AppCompatActivity {
     private TextView title_of_sample;
     private Button Start_Praticing;
     String currentSign;
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,6 +161,7 @@ public class pratice extends AppCompatActivity {
         Start_Praticing.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.e("lol","tets!!!!");
                 Intent t = new Intent(pratice.this,UploadNew.class);
                 t.putExtra("currentSign",currentSign);
@@ -170,9 +173,20 @@ public class pratice extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
 
+        Intent backward=new Intent(pratice.this,MainActivity.class);
+        startActivityForResult(backward,9999);
+//        returnIntent.putExtra(INTENT_URI,returnfile);
+//        returnIntent.putExtra("filename",filename);
+//        returnIntent.putExtra(INTENT_TIME_WATCHED_VIDEO , time_watched);
+//        activity.setResult(7777,returnIntent);
+        //activity.startActivity(backward);
+        //activity.finish();
 
-
+        super.onBackPressed();
+    }
 
 
 
